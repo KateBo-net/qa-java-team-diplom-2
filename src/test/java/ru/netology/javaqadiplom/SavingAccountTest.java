@@ -190,9 +190,9 @@ public class SavingAccountTest {
         Assertions.assertEquals(expectedBalance, actualBalance);
     }
 
-    // пополнение карты на сумму превышающую максимальный баланс не должна пройти
+    // пополнение карты на сумму превышающую максимальный баланс не должно пройти
     @Test
-    public void shouldAddMoreThanMaxBalance() {
+    public void shouldNotAddMoreThanMaxBalance() {
         SavingAccount account = new SavingAccount(
                 5_000,
                 100,
@@ -211,5 +211,70 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(expectedAdd, actualAdd);
         Assertions.assertEquals(expectedBalance, actualBalance);
+    }
+
+    // пополнение карты на нулевую сумму не должно пройти
+    @Test
+    public void shouldNotAddIfAmountIsZero() {
+        SavingAccount account = new SavingAccount(
+                0,
+                0,
+                10_000,
+                5
+        );
+
+        int initialBalance = account.balance;
+        int amount = 0;
+
+        boolean expectedAdd = false;
+        boolean actualAdd = account.add(amount);
+
+        int expectedBalance = initialBalance;
+        int actualBalance = account.getBalance();
+
+        Assertions.assertEquals(expectedAdd, actualAdd);
+        Assertions.assertEquals(expectedBalance, actualBalance);
+    }
+
+    // пополнение карты на отрицательную сумму не должно пройти
+    @Test
+    public void shouldNotAddIfAmountIsNegative() {
+        SavingAccount account = new SavingAccount(
+                0,
+                0,
+                10_000,
+                5
+        );
+
+        int initialBalance = account.balance;
+        int amount = -1_000;
+
+        boolean expectedAdd = false;
+        boolean actualAdd = account.add(amount);
+
+        int expectedBalance = initialBalance;
+        int actualBalance = account.getBalance();
+
+        Assertions.assertEquals(expectedAdd, actualAdd);
+        Assertions.assertEquals(expectedBalance, actualBalance);
+    }
+
+    // расчет годовых процентов на остаток
+    @Test
+    public void shouldCalculateYearChange() {
+        SavingAccount account = new SavingAccount(
+                200,
+                0,
+                1_000,
+                15
+        );
+
+        int initialBalance = account.balance;
+        int rate = account.rate;
+
+        int expectedYearChange = initialBalance / 100 * rate;
+        int actualYearChange = account.yearChange();
+
+        Assertions.assertEquals(expectedYearChange, actualYearChange);
     }
 }
