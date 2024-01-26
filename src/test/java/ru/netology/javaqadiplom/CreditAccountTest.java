@@ -122,7 +122,7 @@ public class CreditAccountTest {
     }
 
     @Test
-    public void shouldNotCalculateChange(){
+    public void shouldNotCalculateChangeWithPositiveBalance(){
         int expected = 0;
         int actual = account.yearChange();
 
