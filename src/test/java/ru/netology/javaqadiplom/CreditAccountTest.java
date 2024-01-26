@@ -7,10 +7,10 @@ public class CreditAccountTest {
     final int initialBalance = 1000;
     final int creditLimit = 5_000;
     final int rate = 15;
-    CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
 
     @Test
     public void shouldCreateAccount() {
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         Assertions.assertEquals(initialBalance, account.getBalance());
         Assertions.assertEquals(creditLimit, account.getCreditLimit());
         Assertions.assertEquals(rate, account.getRate());
@@ -33,6 +33,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldPayUnderLimit() {
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         int amount = creditLimit + initialBalance - 1;
 
         boolean expectedPay = true;
@@ -46,6 +47,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldPayEqualLimit() {
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         int amount = creditLimit + initialBalance;
 
         boolean expectedPay = true;
@@ -59,6 +61,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldNotPayOverLimit() {
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         int amount = creditLimit + initialBalance + 1;
 
         boolean expectedPay = false;
@@ -73,6 +76,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldNotPayAmountNegative() {
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         int amount = -1;
 
         boolean expectedPay = false;
@@ -87,6 +91,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldAddToPositiveBalance() {
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         int amount = 1;
 
         boolean expectedAdd = true;
@@ -100,6 +105,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldNotAddNegativeBalance() {
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         int amount = -1;
 
         boolean expectedAdd = false;
@@ -113,6 +119,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldCalculateChange() {
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         account.pay(creditLimit);
 
         int expected = (initialBalance - creditLimit) / 100 * rate;
@@ -123,6 +130,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldNotCalculateChangeWithPositiveBalance() {
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         int expected = 0;
         int actual = account.yearChange();
 
@@ -131,6 +139,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldNotChangeFieldsDirectly() {
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         account.balance = 0;
         account.rate = 1;
         account.creditLimit = 1000000;
