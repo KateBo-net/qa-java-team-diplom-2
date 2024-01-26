@@ -129,4 +129,17 @@ public class CreditAccountTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    public void shouldNotChangeFieldsDirectly(){
+        account.balance = 0;
+        account.rate = 1;
+        account.creditLimit = 1000000;
+        int expectedBalance = initialBalance;
+        int expectedRate = rate;
+        int expectedLimit = creditLimit;
+        Assertions.assertEquals(expectedBalance, account.getBalance());
+        Assertions.assertEquals(expectedRate, account.getRate());
+        Assertions.assertEquals(expectedLimit, account.getCreditLimit());
+    }
+
 }
