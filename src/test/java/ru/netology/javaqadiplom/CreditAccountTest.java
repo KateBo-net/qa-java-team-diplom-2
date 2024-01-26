@@ -134,12 +134,9 @@ public class CreditAccountTest {
         account.balance = 0;
         account.rate = 1;
         account.creditLimit = 1000000;
-        int expectedBalance = initialBalance;
-        int expectedRate = rate;
-        int expectedLimit = creditLimit;
-        Assertions.assertEquals(expectedBalance, account.getBalance());
-        Assertions.assertEquals(expectedRate, account.getRate());
-        Assertions.assertEquals(expectedLimit, account.getCreditLimit());
+        Assertions.assertEquals(initialBalance, account.getBalance());
+        Assertions.assertEquals(rate, account.getRate());
+        Assertions.assertEquals(creditLimit, account.getCreditLimit());
     }
 
 }
