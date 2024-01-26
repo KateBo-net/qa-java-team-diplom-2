@@ -50,7 +50,7 @@ public class CreditAccountTest {
 
         boolean expectedPay = true;
         boolean actualPay = account.pay(amount);
-        int expectedBalance = initialBalance - amount;
+        int expectedBalance = -creditLimit;
         int actualBalance = account.getBalance();
 
         Assertions.assertEquals(expectedPay, actualPay);
@@ -122,7 +122,7 @@ public class CreditAccountTest {
     }
 
     @Test
-    public void shouldNotCalculateChangeWithPositiveBalance(){
+    public void shouldNotCalculateChangeWithPositiveBalance() {
         int expected = 0;
         int actual = account.yearChange();
 
@@ -130,7 +130,7 @@ public class CreditAccountTest {
     }
 
     @Test
-    public void shouldNotChangeFieldsDirectly(){
+    public void shouldNotChangeFieldsDirectly() {
         account.balance = 0;
         account.rate = 1;
         account.creditLimit = 1000000;
