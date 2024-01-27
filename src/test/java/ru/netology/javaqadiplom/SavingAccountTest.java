@@ -144,9 +144,9 @@ public class SavingAccountTest {
         Assertions.assertEquals(initialBalance, actualBalance);
     }
 
-    // успешное пополнение карты на максиммальную сумму в пределах максимального баланса (включительно)
+    // успешное пополнение карты на максиммальную сумму равную максимальному балансу
     @Test
-    public void shouldAddIfAmountLessThanMaxBalance() {
+    public void shouldAddIfAmountEqualToMaxBalance() {
         SavingAccount account = new SavingAccount(
                 0,
                 0,
