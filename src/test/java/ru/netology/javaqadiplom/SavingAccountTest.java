@@ -15,10 +15,10 @@ public class SavingAccountTest {
                 11
         );
 
-        int initialBalance = account.balance;
-        int minBalance = account.minBalance;
-        int maxBalance = account.maxBalance;
-        int rate = account.rate;
+        int initialBalance = account.getBalance();
+        int minBalance = account.getMinBalance();
+        int maxBalance = account.getMaxBalance();
+        int rate = account.getRate();
 
         Assertions.assertEquals(initialBalance, account.getBalance());
         Assertions.assertEquals(minBalance, account.getMinBalance());
@@ -72,7 +72,7 @@ public class SavingAccountTest {
                 5
         );
 
-        int initialBalance = account.balance;
+        int initialBalance = account.getBalance();
         int amount = 500;
 
         boolean expectedPay = true;
@@ -94,7 +94,7 @@ public class SavingAccountTest {
                 5
         );
 
-        int initialBalance = account.balance;
+        int initialBalance = account.getBalance();
         int amount = 0;
 
         boolean expectedPay = false;
@@ -116,7 +116,7 @@ public class SavingAccountTest {
                 5
         );
 
-        int initialBalance = account.balance;
+        int initialBalance = account.getBalance();
         int amount = -1;
 
         boolean expectedPay = false;
@@ -138,7 +138,7 @@ public class SavingAccountTest {
                 5
         );
 
-        int initialBalance = account.balance;
+        int initialBalance = account.getBalance();
         int amount = 20_000;
 
         boolean expectedPay = false;
@@ -160,7 +160,7 @@ public class SavingAccountTest {
                 5
         );
 
-        int initialBalance = account.balance;
+        int initialBalance = account.getBalance();
         int amount = 5_000;
 
         boolean expectedAdd = true;
@@ -183,7 +183,7 @@ public class SavingAccountTest {
                 5
         );
 
-        int initialBalance = account.balance;
+        int initialBalance = account.getBalance();
         int amount = 3_000;
 
         boolean expectedAdd = true;
@@ -206,7 +206,7 @@ public class SavingAccountTest {
                 5
         );
 
-        int initialBalance = account.balance;
+        int initialBalance = account.getBalance();
         int amount = 11_000;
 
         boolean expectedAdd = false;
@@ -229,7 +229,7 @@ public class SavingAccountTest {
                 5
         );
 
-        int initialBalance = account.balance;
+        int initialBalance = account.getBalance();
         int amount = 0;
 
         boolean expectedAdd = false;
@@ -252,7 +252,7 @@ public class SavingAccountTest {
                 5
         );
 
-        int initialBalance = account.balance;
+        int initialBalance = account.getBalance();
         int amount = -1_000;
 
         boolean expectedAdd = false;
@@ -275,8 +275,8 @@ public class SavingAccountTest {
                 15
         );
 
-        int initialBalance = account.balance;
-        int rate = account.rate;
+        int initialBalance = account.getBalance();
+        int rate = account.getRate();
 
         int expectedYearChange = initialBalance / 100 * rate;
         int actualYearChange = account.yearChange();
