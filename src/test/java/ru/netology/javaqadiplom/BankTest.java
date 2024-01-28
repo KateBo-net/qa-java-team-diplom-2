@@ -23,8 +23,8 @@ public class BankTest {
         Account to = new SavingAccount(initialBalanceTo, minBalanceTo, maxBalanceTo, rateTo);
 
         boolean expectedResult = true;
-        boolean actualResult = bank.transfer(from, to, initialBalanceFrom-1);
-        int expectedBalanceTo = initialBalanceTo + initialBalanceFrom-1;
+        boolean actualResult = bank.transfer(from, to, initialBalanceFrom - 1);
+        int expectedBalanceTo = initialBalanceTo + initialBalanceFrom - 1;
         int actualBalanceTo = to.getBalance();
         int expectedBalanceFrom = 1;
         int actualBalanceFrom = from.getBalance();
@@ -52,7 +52,7 @@ public class BankTest {
         Account to = new SavingAccount(initialBalanceTo, minBalanceTo, maxBalanceTo, rateTo);
 
         boolean expectedResult = false;
-        boolean actualResult = bank.transfer(from, to, 11000);
+        boolean actualResult = bank.transfer(from, to, initialBalanceFrom + 1);
         int expectedBalanceTo = initialBalanceTo;
         int actualBalanceTo = to.getBalance();
         int expectedBalanceFrom = initialBalanceFrom;
@@ -81,7 +81,7 @@ public class BankTest {
         Account to = new SavingAccount(initialBalanceTo, minBalanceTo, maxBalanceTo, rateTo);
 
         boolean expectedResult = false;
-        boolean actualResult = bank.transfer(from, to, 10_000);
+        boolean actualResult = bank.transfer(from, to, maxBalanceTo + 1);
         int expectedBalanceTo = initialBalanceTo;
         int actualBalanceTo = to.getBalance();
         int expectedBalanceFrom = initialBalanceFrom;
@@ -110,7 +110,7 @@ public class BankTest {
         Account to = new SavingAccount(initialBalanceTo, minBalanceTo, maxBalanceTo, rateTo);
 
         boolean expectedResult = false;
-        boolean actualResult = bank.transfer(from, to, 15_000);
+        boolean actualResult = bank.transfer(from, to, initialBalanceFrom);
         int expectedBalanceTo = initialBalanceTo;
         int actualBalanceTo = to.getBalance();
         int expectedBalanceFrom = initialBalanceFrom;
@@ -232,6 +232,7 @@ public class BankTest {
         Assertions.assertEquals(expectedBalanceTo, actualBalanceTo);
         Assertions.assertEquals(expectedResult, actualResult);
     }
+
     @Test
     public void shouldTransferFromCreditToSaving() {
         Bank bank = new Bank();
@@ -247,7 +248,7 @@ public class BankTest {
         int rateTo = 15;
         Account to = new SavingAccount(initialBalanceTo, minBalanceTo, maxBalanceTo, rateTo);
 
-        int amount = 1000;
+        int amount = creditLimitFrom / 2;
         boolean expectedResult = true;
         boolean actualResult = bank.transfer(from, to, amount);
         int expectedBalanceTo = initialBalanceTo + amount;
