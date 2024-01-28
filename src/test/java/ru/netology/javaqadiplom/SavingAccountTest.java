@@ -44,6 +44,12 @@ public class SavingAccountTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new SavingAccount(100, -100, 10_000, 7));
     }
 
+    // maxBalance меньше нуля, должно выкидываться исключения вида IllegalArgumentException
+    @Test
+    public void shouldGenerateExceptionWhenMaxBalanceIsNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new SavingAccount(0,0, -1, 5));
+    }
+
     // minBalance больше maxBalance, должно выкидываться исключения вида IllegalArgumentException
     @Test
     public void shouldGenerateExceptionWhenMinBalanceIsGreaterMax() {
