@@ -203,4 +203,59 @@ public class BankTest {
         Assertions.assertEquals(expectedBalanceTo, actualBalanceTo);
         Assertions.assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void shouldTransferFromSavingToCredit() {
+        Bank bank = new Bank();
+
+        int initialBalanceFrom = 10_000;
+        int minBalanceFrom = 0;
+        int maxBalanceFrom = 50_000;
+        int rateFrom = 15;
+        Account from = new SavingAccount(initialBalanceFrom, minBalanceFrom, maxBalanceFrom, rateFrom);
+
+        int initialBalanceTo = 0;
+        int creditLimitTo = 10_000;
+        int rateTo = 15;
+        Account to = new CreditAccount(initialBalanceTo, creditLimitTo, rateTo);
+
+        int amount = 1000;
+        boolean expectedResult = true;
+        boolean actualResult = bank.transfer(from, to, amount);
+        int expectedBalanceTo = initialBalanceTo + amount;
+        int actualBalanceTo = to.getBalance();
+        int expectedBalanceFrom = initialBalanceFrom - amount;
+        int actualBalanceFrom = from.getBalance();
+
+        Assertions.assertEquals(expectedBalanceFrom, actualBalanceFrom);
+        Assertions.assertEquals(expectedBalanceTo, actualBalanceTo);
+        Assertions.assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    public void shouldTransferFromCreditToSaving() {
+        Bank bank = new Bank();
+
+        int initialBalanceFrom = 0;
+        int creditLimitFrom = 10_000;
+        int rateFrom = 15;
+        Account from = new CreditAccount(initialBalanceFrom, creditLimitFrom, rateFrom);
+
+        int initialBalanceTo = 1_000;
+        int minBalanceTo = 0;
+        int maxBalanceTo = 50_000;
+        int rateTo = 15;
+        Account to = new SavingAccount(initialBalanceTo, minBalanceTo, maxBalanceTo, rateTo);
+
+        int amount = 1000;
+        boolean expectedResult = true;
+        boolean actualResult = bank.transfer(from, to, amount);
+        int expectedBalanceTo = initialBalanceTo + amount;
+        int actualBalanceTo = to.getBalance();
+        int expectedBalanceFrom = initialBalanceFrom - amount;
+        int actualBalanceFrom = from.getBalance();
+
+        Assertions.assertEquals(expectedBalanceFrom, actualBalanceFrom);
+        Assertions.assertEquals(expectedBalanceTo, actualBalanceTo);
+        Assertions.assertEquals(expectedResult, actualResult);
+    }
 }
