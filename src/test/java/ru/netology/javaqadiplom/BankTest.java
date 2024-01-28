@@ -165,11 +165,12 @@ public class BankTest {
         int rateTo = 15;
         Account to = new CreditAccount(initialBalanceTo, creditLimitTo, rateTo);
 
+        int amount = creditLimitFrom + initialBalanceFrom;
         boolean expectedResult = true;
-        boolean actualResult = bank.transfer(from, to, creditLimitFrom + initialBalanceFrom);
+        boolean actualResult = bank.transfer(from, to, amount);
         int expectedBalanceTo = initialBalanceTo + initialBalanceFrom + creditLimitFrom;
         int actualBalanceTo = to.getBalance();
-        int expectedBalanceFrom = 0;
+        int expectedBalanceFrom = initialBalanceFrom - amount;
         int actualBalanceFrom = from.getBalance();
 
         Assertions.assertEquals(expectedBalanceFrom, actualBalanceFrom);
