@@ -111,7 +111,7 @@ public class SavingAccount extends Account {
      */
     @Override
     public int yearChange() {
-        return balance / 100 * rate;
+        return balance * rate / 100;
     }
 
     public int getMinBalance() {
